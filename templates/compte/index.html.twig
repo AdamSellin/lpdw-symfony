@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon Compte{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+{# inlude navbar #}
+{% include 'navbar.html.twig' %}
+
+<div class="example-wrapper">
+
+    {% if app.user %}
+        <a class="mb-3">
+            Vous êtes connecté en tant que {{ app.user.email }}
+        </a>
+
+    {% else %}
+        <a class="pb-3" href="{{ path('app_login') }}" uk-icon="icon: user">Connexion&nbsp;&nbsp;</a>
+    {% endif %}
+
+          <img style="vertical-align: middle;" class="mb-1 ml-1" src="https://img.icons8.com/offices/30/000000/cook-male.png"/>
+        </a>
+    This friendly message is coming from:
+    <ul>
+        <li>Your controller at <code><a href="{{ '/mnt/d/Adam Sellin/Documents/Dossier/LPDW/lpdw-symfony/src/Controller/CompteController.php'|file_link(0) }}">src/Controller/CompteController.php</a></code></li>
+        <li>Your template at <code><a href="{{ '/mnt/d/Adam Sellin/Documents/Dossier/LPDW/lpdw-symfony/templates/compte/index.html.twig'|file_link(0) }}">templates/compte/index.html.twig</a></code></li>
+    </ul>
+</div>
+{% endblock %}

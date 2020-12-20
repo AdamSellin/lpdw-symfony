@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Utilisateurs{% endblock %}
+
+{% block body %}
+
+{# inlude navbar #}
+{% include 'navbar.html.twig' %}
+
+<div class="text-center Tabl">
+    <h1 class="mb-5">Liste des utilisateurs</h1>
+    <div class="table-responsive m-2">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in user %}
+                <tr>
+                    <th scope="row">{{ user.id}}</th>
+                    <td>{{ user.email }}</td>
+                    <td class="d-inline-block text-truncate" style="max-width: 250px;">{{ user.password }}</td>
+                    <td>
+                        <a class="btn btn-dark" href="{{ path('user_show', {'id': user.id}) }}">Afficher<a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <a class="btn btn-dark" href="{{ path('user_new') }}">Créer un nouvel utilisateur</a>
+</div>
+{% endblock %}
