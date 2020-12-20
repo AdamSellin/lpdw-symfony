@@ -2,7 +2,7 @@
   <a class="navbar-brand" href="{{ path('compte') }}">My bank account</a>
     <div class="collapse navbar-collapse" id="navbarColor01">
       {% if app.user and ('ROLE_ADMIN' in app.user.roles ? app.user.roles|json_encode : '') %}
-        <ul class="nav navbar-nav ml-auto">
+        <ul class="nav navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link" href="{{ path('user_index') }}">Tables des Utilisateurs</a>
           </li>

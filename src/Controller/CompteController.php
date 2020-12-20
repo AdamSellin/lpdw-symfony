@@ -6,7 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\UserRepository;
-use App\Entity\User;
+use App\Entity\Compte;
+use Symfony\Component\HttpFoundation\Request;
+use App\Form\CompteType;
 
 class CompteController extends AbstractController
 {
@@ -21,4 +23,30 @@ class CompteController extends AbstractController
             'user' => $userRepository->findAll(),
         ]);
     }
+
+    /**
+     * @Route("/compte/new", name="compte_new",  methods={"GET","POST"})
+     *
+     */
+    public function new(Request $request): Response
+    {
+        $compte = new Compte();
+        $form = $this->createForm(CompteType::class, $compte);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($compte);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('compte');
+        }
+
+        return $this->render('compte/new.html.twig', [
+            'compte'=> $compte,
+            'form' => $form->createView(),
+        ]);
+    }
+
+
 }

@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel Utilisateur{% endblock %}
+
+{% block body %}
+
+{# inlude navbar #}
+{% include 'navbar.html.twig' %}
+
+<h1>Créer un compte</h1>
+
+  {{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.iban) }}
+    {{ form_row(form.user) }}
+        {{ form_row(form.solde, {'value' : random(100, 10000), 'attr': { 'readonly': 'true' } }) }}
+    <fieldset disabled>
+        {{ form_row(form.transaction) }}
+    </fieldset>
+
+    {{ form_row(form.submit) }}
+{{ form_end(form) }}
+
+{% endblock body %}
